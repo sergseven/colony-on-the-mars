@@ -164,15 +164,15 @@ int tDirectDraw::LoadImageFile(LPCSTR szBitmap)
 {
     HBITMAP hbm;
 	BITMAP bm;
-	// çàãðóæàåì èçîáðàæåíèå èç ôàéëà
+	// Ð·Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÐ¼ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°
 	hbm = (HBITMAP)LoadImage(NULL, szBitmap, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE |
  							      LR_CREATEDIBSECTION);
 	if (hbm == NULL) return 0;
 	GetObject (hbm, sizeof(bm), &bm);
-	// ñîçäàåì ïîâåðõíîñòü òðåáóåìîãî ðàçìåðà
+	// ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚ÑŒ Ñ‚Ñ€ÐµÐ±ÑƒÐµÐ¼Ð¾Ð³Ð¾ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð°
 	int nSurf = CreateOffScreenSurface(bm.bmWidth, bm.bmHeight);
 	if (nSurf == 0) return 0;
-	// êîïèðóåì èçîáðàæåíèå íà ïîâåðõíîñòü
+	// ÐºÐ¾Ð¿Ð¸Ñ€ÑƒÐµÐ¼ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð° Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚ÑŒ
 	if(CopyBMP(&lpDDSOffSurface[m_currentSurfaceNum],hbm) == 0) return 0;
 	DeleteObject (hbm);
 	return nSurf;
@@ -284,8 +284,8 @@ BOOL DirectDrawWin::Copy_Bmp24_Surface24( LPDIRECTDRAWSURFACE surf,
  BYTE* surfbits = (BYTE*)desc.lpSurface;
  BYTE* imagebits = (BYTE*)(&bmpbuf[(h-1)*bytesgiven]);
 
- // Ïðîâåðèòü, ñîâïàäàåò ëè ôîðìàò ôàéëà ñ ôîðìàòîì ïîâåðõíîñòè
- // Åñëè ñîâïàäàåò, ïåðåñûëêó ìîæíî óñêîðèòü ôóíêöèåé memcpy()
+ // ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ, ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ð»Ð¸ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ñ„Ð°Ð¹Ð»Ð° Ñ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¾Ð¼ Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚Ð¸
+ // Ð•ÑÐ»Ð¸ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚, Ð¿ÐµÑ€ÐµÑÑ‹Ð»ÐºÑƒ Ð¼Ð¾Ð¶Ð½Ð¾ ÑƒÑÐºÐ¾Ñ€Ð¸Ñ‚ÑŒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÐµÐ¹ memcpy()
  if (loREDbit==16 && loGREENbit==8 && loBLUEbit==0)
  {
   TRACE("using optimized code...\n");
@@ -328,18 +328,18 @@ BOOL tDirectDraw::CopyBMP(LPDIRECTDRAWSURFACE *lpSurf,HBITMAP hbm)
 	HDC                  hdc;
 	BITMAP               bm;
 
-	// ñîçäàåì DC êàðòèíêè
+	// ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ DC ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸
 	hdcImage = CreateCompatibleDC(NULL);
 	if(!hdcImage) return 0;
 	SelectObject (hdcImage, hbm);
 	GetObject (hbm, sizeof(bm), &bm);
-	// äàííàÿ ôóíêöèÿ äàåò íàì DC ñâÿçàííûé ñ ïîâåðõíîñòüþ
-	//     ïîñëå ÷åãî ìû ìîæåì ðàáîòàòü ñ íèì êàê ñ îáû÷íûì Windows DC
+	// Ð´Ð°Ð½Ð½Ð°Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð´Ð°ÐµÑ‚ Ð½Ð°Ð¼ DC ÑÐ²ÑÐ·Ð°Ð½Ð½Ñ‹Ð¹ Ñ Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚ÑŒÑŽ
+	//     Ð¿Ð¾ÑÐ»Ðµ Ñ‡ÐµÐ³Ð¾ Ð¼Ñ‹ Ð¼Ð¾Ð¶ÐµÐ¼ Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ Ñ Ð½Ð¸Ð¼ ÐºÐ°Ðº Ñ Ð¾Ð±Ñ‹Ñ‡Ð½Ñ‹Ð¼ Windows DC
 	(*lpSurf)->GetDC (&hdc);
-	// "áëèòòèì" íàøó êàðòèíêó íà ïîâåðõíîñòü
-	//     ïîñëå ýòîãî íà ïîâåðõíîñòè ó íàñ áóäåò õðàíèòüñÿ íóæíàÿ íàì êàðòèíêà
+	// "Ð±Ð»Ð¸Ñ‚Ñ‚Ð¸Ð¼" Ð½Ð°ÑˆÑƒ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ Ð½Ð° Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚ÑŒ
+	//     Ð¿Ð¾ÑÐ»Ðµ ÑÑ‚Ð¾Ð³Ð¾ Ð½Ð° Ð¿Ð¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚Ð¸ Ñƒ Ð½Ð°Ñ Ð±ÑƒÐ´ÐµÑ‚ Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒÑÑ Ð½ÑƒÐ¶Ð½Ð°Ñ Ð½Ð°Ð¼ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ°
 	BitBlt (hdc, 0, 0, bm.bmWidth, bm.bmHeight, hdcImage, 0, 0, SRCCOPY);
-	// íàì íóæíî îñâîáîäèòü DC, åñëè âû ýòîãî íå ñäåëàåòå, òî ñèñòåìà çàâèñíåò
+	// Ð½Ð°Ð¼ Ð½ÑƒÐ¶Ð½Ð¾ Ð¾ÑÐ²Ð¾Ð±Ð¾Ð´Ð¸Ñ‚ÑŒ DC, ÐµÑÐ»Ð¸ Ð²Ñ‹ ÑÑ‚Ð¾Ð³Ð¾ Ð½Ðµ ÑÐ´ÐµÐ»Ð°ÐµÑ‚Ðµ, Ñ‚Ð¾ ÑÐ¸ÑÑ‚ÐµÐ¼Ð° Ð·Ð°Ð²Ð¸ÑÐ½ÐµÑ‚
 	(*lpSurf)->ReleaseDC (hdc);
 
 	DeleteDC (hdcImage);

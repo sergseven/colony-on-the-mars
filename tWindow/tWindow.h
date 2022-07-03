@@ -9,6 +9,6 @@ public:
 protected:
 	int nCmdShow;
 	HINSTANCE hCurrentInst;
-    HINSTANCE hInstance;//дескриптор
-    HWND hWnd;//Окно
+    HINSTANCE hInstance;//РґРµСЃРєСЂРёРїС‚РѕСЂ
+    HWND hWnd;//РћРєРЅРѕ
 };

@@ -3,7 +3,7 @@
 /*--------------------------------------------------------------
  tError::tError()
 
- Конструктор, инициализирущий ошибку
+ РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РёРЅРёС†РёР°Р»РёР·РёСЂСѓС‰РёР№ РѕС€РёР±РєСѓ
 --------------------------------------------------------------*/
 tError::tError(const char* file,int line,const char* history,const char* message ...)
 {
@@ -23,7 +23,7 @@ tError::tError(const char* file,int line,const char* history,const char* message
 /*--------------------------------------------------------------
  tError::~tError()
 
- Деструктор
+ Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 --------------------------------------------------------------*/
 tError::~tError()
 {
@@ -35,13 +35,13 @@ tError::~tError()
 /*--------------------------------------------------------------
  tError::GetErrorMessage()
 
- Сформировать и передать сообщение об ошибке
+ РЎС„РѕСЂРјРёСЂРѕРІР°С‚СЊ Рё РїРµСЂРµРґР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
 --------------------------------------------------------------*/
 const char* tError::GetErrorMessage(void)
 {
     char buffer[4096];
 
-    // Формирование сообщения об ошибке
+    // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
     sprintf(buffer,"%s\n[File:%s][Line:%d]\n\nHistory: %s",
             m_errorMessage.c_str(),
             m_errorFile.c_str(),
@@ -49,14 +49,14 @@ const char* tError::GetErrorMessage(void)
             m_errorHistory.c_str());
     m_errorMessage = buffer;
 
-    // Передать сообщение об ошибке
+    // РџРµСЂРµРґР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
     return m_errorMessage.c_str();
 }
 
 /*--------------------------------------------------------------
  tError::AddErrorHistory()
 
- Добавить в историю ошибки
+ Р”РѕР±Р°РІРёС‚СЊ РІ РёСЃС‚РѕСЂРёСЋ РѕС€РёР±РєРё
 --------------------------------------------------------------*/
 void tError::AddErrorHistory(const char* history ...)
 {
@@ -67,6 +67,6 @@ void tError::AddErrorHistory(const char* history ...)
     vsprintf(buffer,history,list);
     va_end(list);
 
-    // Добавить в историю ошибки
+    // Р”РѕР±Р°РІРёС‚СЊ РІ РёСЃС‚РѕСЂРёСЋ РѕС€РёР±РєРё
     m_errorHistory += buffer;
 }

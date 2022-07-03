@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
  tError
 
- Класс обработчика ошибок
+ РљР»Р°СЃСЃ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РѕС€РёР±РѕРє
 --------------------------------------------------------------*/
 #ifndef _TERROR_H_
 #define _TERROR_H_
@@ -17,10 +17,10 @@ public:
     const char* GetErrorMessage(void);
     void AddErrorHistory(const char* history ...);
 protected:
-    string m_errorFile; // Имя файла, где произошла ошибка
-    int m_errorLine; // Строка, где произошла ошибка
-    string m_errorHistory; // История ошибки
-    string m_errorMessage; // Сообщение об ошибке
+    string m_errorFile; // РРјСЏ С„Р°Р№Р»Р°, РіРґРµ РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°
+    int m_errorLine; // РЎС‚СЂРѕРєР°, РіРґРµ РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°
+    string m_errorHistory; // РСЃС‚РѕСЂРёСЏ РѕС€РёР±РєРё
+    string m_errorMessage; // РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
 };
 
 #endif _TERROR_H_

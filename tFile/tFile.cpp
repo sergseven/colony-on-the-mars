@@ -1,7 +1,7 @@
 /*---------------------- C++ source file -----------------------
  Project: tEngine
 
- Класс файла
+ РљР»Р°СЃСЃ С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 
 #include "tFile.h"
@@ -9,7 +9,7 @@
 /*--------------------------------------------------------------
  tFile::tFile()
 
- Конструктор по умолчанию
+ РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 --------------------------------------------------------------*/
 tFile::tFile()
 {
@@ -19,11 +19,11 @@ tFile::tFile()
 /*--------------------------------------------------------------
  tFile::~tFile()
 
- Деструктор
+ Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 --------------------------------------------------------------*/
 tFile::~tFile()
 {
-  //   Закрыть файл
+  //   Р—Р°РєСЂС‹С‚СЊ С„Р°Р№Р»
     if(m_file)
         if(fclose(m_file))
             throw tError(__FILE__,__LINE__,"tFile::~tFile",
@@ -34,7 +34,7 @@ tFile::~tFile()
 /*--------------------------------------------------------------
  tFile::OpenFile()
 
- Открытие файла
+ РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 void tFile::OpenFile(const char* name,int flags)
 {
@@ -42,7 +42,7 @@ void tFile::OpenFile(const char* name,int flags)
 
     try
     {
-        // Закрыть файл
+        // Р—Р°РєСЂС‹С‚СЊ С„Р°Р№Р»
         tFile::CloseFile();
     }
     catch(tError &error)
@@ -51,12 +51,12 @@ void tFile::OpenFile(const char* name,int flags)
         throw;
 	}
 
-    // Копируем имя файла
+    // РљРѕРїРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р°
     m_fileName = name;
-    // Копируем флаги
+    // РљРѕРїРёСЂСѓРµРј С„Р»Р°РіРё
     m_fileFlags = flags;
 
-    // Формирование флагов для открытия
+    // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ С„Р»Р°РіРѕРІ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ
     if(m_fileFlags&TFILEREAD)
         openFlags = "r";
     if(m_fileFlags&TFILEWRITE)
@@ -70,7 +70,7 @@ void tFile::OpenFile(const char* name,int flags)
     else
         openFlags += "t";
 
-	// Открытие файла
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
     m_file = fopen(m_fileName.c_str(),openFlags.c_str());
     if(!m_file)
         throw tError(__FILE__,__LINE__,"tFile::OpenFile",
@@ -81,7 +81,7 @@ void tFile::OpenFile(const char* name,int flags)
 /*--------------------------------------------------------------
  tFile::CloseFile()
 
- Закрытие файла
+ Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 void tFile::CloseFile(void)
 {
@@ -99,13 +99,13 @@ void tFile::CloseFile(void)
 /*--------------------------------------------------------------
  tLogFile::OpenLogFile()
 
- Открытие log-файла
+ РћС‚РєСЂС‹С‚РёРµ log-С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 void tFile::OpenLogFile(const char* name)
 {
 	try
 	{
-		// Открытие файла
+		// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 		tFile::OpenFile(name,TFILENEW|TFILEWRITE|TFILETEXT);
 	}
     catch(tError &error)
@@ -119,7 +119,7 @@ void tFile::OpenLogFile(const char* name)
 /*--------------------------------------------------------------
  tLogFile::LogMessage()
 
- Вывести сообщение в log-файл
+ Р’С‹РІРµСЃС‚Рё СЃРѕРѕР±С‰РµРЅРёРµ РІ log-С„Р°Р№Р»
 --------------------------------------------------------------*/
 void tFile::LogMessage(const char* message ...)
 {
@@ -134,14 +134,14 @@ void tFile::LogMessage(const char* message ...)
 /*--------------------------------------------------------------
  tLogFile::CloseLogFile()
 
- Закрытие log-файла
+ Р—Р°РєСЂС‹С‚РёРµ log-С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 void tFile::CloseLogFile(void)
 {
 	tFile::LogMessage("----------------------- end log --------------------------------\n");
     try
     {
-		// Закрытие файла
+		// Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 		tFile::LogMessage("Begin to close LogFile");
         tFile::CloseFile();
 	//	tFile::LogMessage("LogFile Closed...");

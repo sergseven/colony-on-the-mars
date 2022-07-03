@@ -15,29 +15,29 @@ public:
     virtual ~tDirectDraw();
 	//
 	BOOL InitDirectDraw(HWND hWindow,int width,int height,byte color);
-	UINT CreateOffScreenSurface(UINT width,UINT height);//создает внеэкранную поверхность
+	UINT CreateOffScreenSurface(UINT width,UINT height);//СЃРѕР·РґР°РµС‚ РІРЅРµСЌРєСЂР°РЅРЅСѓСЋ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
 	BOOL LoadImageFile(LPCSTR szBitmap);
-	BOOL CopyDibToSurface(UINT surface,char szBitmap[],//копирует изображение из растра на
-	int x,int y,int cx,int cy);//внеэранную поверхность
-//	BOOL SetPalette(char szBitmap[]);//устанавливает палитру
-	BOOL BlitImage(int x,int y,//переносит изображение с внеэкранной поверхности
-	UINT surfaceNum,RECT* rect);//на вторичную поверхность
-	BOOL FlipSurfaces();//выполняет переключение поверхностей
-    //устанавливает прозрачные цвета
+	BOOL CopyDibToSurface(UINT surface,char szBitmap[],//РєРѕРїРёСЂСѓРµС‚ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РёР· СЂР°СЃС‚СЂР° РЅР°
+	int x,int y,int cx,int cy);//РІРЅРµСЌСЂР°РЅРЅСѓСЋ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
+//	BOOL SetPalette(char szBitmap[]);//СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїР°Р»РёС‚СЂСѓ
+	BOOL BlitImage(int x,int y,//РїРµСЂРµРЅРѕСЃРёС‚ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ РІРЅРµСЌРєСЂР°РЅРЅРѕР№ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
+	UINT surfaceNum,RECT* rect);//РЅР° РІС‚РѕСЂРёС‡РЅСѓСЋ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
+	BOOL FlipSurfaces();//РІС‹РїРѕР»РЅСЏРµС‚ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
+    //СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїСЂРѕР·СЂР°С‡РЅС‹Рµ С†РІРµС‚Р°
 	BOOL SetTransparentColor(UINT surface,UINT lowColor,UINT hiColor);
-	void DeleteDirectDraw();//удаляет объекты DirectDraw
-   	LPDIRECTDRAWSURFACE lpDDSOffSurface[101];//массив на 101 внеэкранную поверхность
+	void DeleteDirectDraw();//СѓРґР°Р»СЏРµС‚ РѕР±СЉРµРєС‚С‹ DirectDraw
+   	LPDIRECTDRAWSURFACE lpDDSOffSurface[101];//РјР°СЃСЃРёРІ РЅР° 101 РІРЅРµСЌРєСЂР°РЅРЅСѓСЋ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
 protected:
 	BOOL CopyBMP(LPDIRECTDRAWSURFACE *lpSurf,HBITMAP hbm);
-	void MakeFalse();//инициализирует начальные флаги
+	void MakeFalse();//РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РЅР°С‡Р°Р»СЊРЅС‹Рµ С„Р»Р°РіРё
 	protected:
 	
-		UINT m_currentSurfaceNum;//текущее количество внеэкранных поверхностей
-	    LPDIRECTDRAW lpDD;//объект DirectDraw
-    	LPDIRECTDRAWSURFACE lpDDSPrimary;//первичная поверхность
-    	LPDIRECTDRAWSURFACE lpDDSBack;//вторичная поверхность
-//	    LPDIRECTDRAWPALETTE lpDDPal;//палитра
-    	BOOL m_colorKeySet[101];//есть ли цветовой ключ(на каждую внеэкранную поверхность)?
+		UINT m_currentSurfaceNum;//С‚РµРєСѓС‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРЅРµСЌРєСЂР°РЅРЅС‹С… РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
+	    LPDIRECTDRAW lpDD;//РѕР±СЉРµРєС‚ DirectDraw
+    	LPDIRECTDRAWSURFACE lpDDSPrimary;//РїРµСЂРІРёС‡РЅР°СЏ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
+    	LPDIRECTDRAWSURFACE lpDDSBack;//РІС‚РѕСЂРёС‡РЅР°СЏ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ
+//	    LPDIRECTDRAWPALETTE lpDDPal;//РїР°Р»РёС‚СЂР°
+    	BOOL m_colorKeySet[101];//РµСЃС‚СЊ Р»Рё С†РІРµС‚РѕРІРѕР№ РєР»СЋС‡(РЅР° РєР°Р¶РґСѓСЋ РІРЅРµСЌРєСЂР°РЅРЅСѓСЋ РїРѕРІРµСЂС…РЅРѕСЃС‚СЊ)?
 
 };
 #endif _TDIRECTDRAW_H

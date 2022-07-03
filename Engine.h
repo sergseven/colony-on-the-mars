@@ -38,15 +38,15 @@ class tUnit : public tEngine
 public:
 	tUnit();
 	virtual ~tUnit();
-	RECT rcRect; // Окружающий объект прямоугольник
-	POINT Pos; // Экранные координаты объекта
-	BOOL bAnim; // Есть ли анимация
-	BOOL bDie; // Флаг “смерти” – объект нужно уничтожить?
-	BYTE Frame; // Текущий кадр
-	BYTE Counter; // Счетчик для анимации
-	POINT Action; //Координаты текущего действия
-	POINT *PathMass; //список координат пути
-	int Whose; //принадлежность 
+	RECT rcRect; // РћРєСЂСѓР¶Р°СЋС‰РёР№ РѕР±СЉРµРєС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
+	POINT Pos; // Р­РєСЂР°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РѕР±СЉРµРєС‚Р°
+	BOOL bAnim; // Р•СЃС‚СЊ Р»Рё Р°РЅРёРјР°С†РёСЏ
+	BOOL bDie; // Р¤Р»Р°Рі вЂњСЃРјРµСЂС‚РёвЂќ вЂ“ РѕР±СЉРµРєС‚ РЅСѓР¶РЅРѕ СѓРЅРёС‡С‚РѕР¶РёС‚СЊ?
+	BYTE Frame; // РўРµРєСѓС‰РёР№ РєР°РґСЂ
+	BYTE Counter; // РЎС‡РµС‚С‡РёРє РґР»СЏ Р°РЅРёРјР°С†РёРё
+	POINT Action; //РљРѕРѕСЂРґРёРЅР°С‚С‹ С‚РµРєСѓС‰РµРіРѕ РґРµР№СЃС‚РІРёСЏ
+	POINT *PathMass; //СЃРїРёСЃРѕРє РєРѕРѕСЂРґРёРЅР°С‚ РїСѓС‚Рё
+	int Whose; //РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ 
 	void Kill() { bDie = TRUE; }
 	BOOL Collision(tUnit* pUnit);
 	virtual void Blit() = 0;
@@ -54,21 +54,21 @@ public:
 	virtual void Process(tUnit* pUnit) = 0;
 	virtual BOOL Move() = 0;
     void FindPath(POINT Start,POINT Finish,
-		          POINT *InPathMass);//поиск пути  
+		          POINT *InPathMass);//РїРѕРёСЃРє РїСѓС‚Рё  
 };
 
 class tInfantry : public tUnit
 {
 public:
-	// x, y – экранные координаты солдата
+	// x, y вЂ“ СЌРєСЂР°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ СЃРѕР»РґР°С‚Р°
 	tInfantry(int x, int y);
 	virtual ~tInfantry();
-	// Возвращает тип объекта - пехота 
+	// Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРї РѕР±СЉРµРєС‚Р° - РїРµС…РѕС‚Р° 
 	BYTE GetType() { return UNITTYPE_INFANTRY; }
-	// Функции обработки
+	// Р¤СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё
 	void Process(tUnit* pUnit);
 	BOOL Move();
-	// Функция прорисовки
+	// Р¤СѓРЅРєС†РёСЏ РїСЂРѕСЂРёСЃРѕРІРєРё
 	void Blit();
 };
 
@@ -86,8 +86,8 @@ typedef tUnit *LPOBJECT;
 typedef std::list<LPOBJECT > MyList; 
 typedef std::list<LPOBJECT >::iterator MyListIterator; 
 
-MyList List; // Собственно список
-tField* Field[20][38];//Карта
+MyList List; // РЎРѕР±СЃС‚РІРµРЅРЅРѕ СЃРїРёСЃРѕРє
+tField* Field[20][38];//РљР°СЂС‚Р°
 tUnit* pUnit;
 int i,j;
 RECT rect;

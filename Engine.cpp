@@ -28,7 +28,7 @@ void tEngine::InitDD()
 
 void tEngine::RunEngine()
 {
-	MSG msg;//сообщения
+	MSG msg;//СЃРѕРѕР±С‰РµРЅРёСЏ
 	InitGame();
 	tFile::LogMessage("InitGmae Thread Complite\n");
     try
@@ -41,7 +41,7 @@ void tEngine::RunEngine()
 			DispatchMessage(&msg);
         }
         else
-			//// Запуск задачи
+			//// Р—Р°РїСѓСЃРє Р·Р°РґР°С‡Рё
             (*m_thread)();
 
 		
@@ -57,7 +57,7 @@ void tEngine::RunEngine()
 
 void tEngine::SetEngineThread(void (*thread)(void))
 {
-    // Сохранение ссылки на задачу
+    // РЎРѕС…СЂР°РЅРµРЅРёРµ СЃСЃС‹Р»РєРё РЅР° Р·Р°РґР°С‡Сѓ
     m_thread = thread;
 }
 
@@ -65,19 +65,19 @@ void tEngine::ReleaseEngine()
 {
 	for (i=0;i<20;i++)
 	for (j=0;j<38;j++)
-		delete Field[i][j];//Деинициалзация карты
+		delete Field[i][j];//Р”РµРёРЅРёС†РёР°Р»Р·Р°С†РёСЏ РєР°СЂС‚С‹
 	//
 	for(MyListIterator iterator=List.begin(); iterator !=List.end(); iterator++)
 	{
 		pUnit=*iterator;
 		delete pUnit;
 	}
-	// Очищаем список
+	// РћС‡РёС‰Р°РµРј СЃРїРёСЃРѕРє
 	List.clear(); 
 	//
 	tDirectDraw::DeleteDirectDraw();
     tFile::LogMessage("DeleteDD complite succesful.....\n");
-    // Конец log-сообщений
+    // РљРѕРЅРµС† log-СЃРѕРѕР±С‰РµРЅРёР№
     tFile::CloseLogFile();
 }
 
@@ -106,30 +106,30 @@ void tEngine::InitGame(void)
 		tField* Field[20][38];
 		for (i=0;i<20;i++)
 		for (j=0;j<38;j++)
-			Field[i][j] = new tField;//Инициалзация карты
-		/*int cU = 0;//Общее число юнитов
+			Field[i][j] = new tField;//РРЅРёС†РёР°Р»Р·Р°С†РёСЏ РєР°СЂС‚С‹
+		/*int cU = 0;//РћР±С‰РµРµ С‡РёСЃР»Рѕ СЋРЅРёС‚РѕРІ
 		const MaxCUnits = 10;
 		//tField *Map[50][50];
 		tUnit *UnitMass[MaxCUnits];
 		for (int i=0;i<=9;i++)
 		{
 			UnitMass[++cU]=new tUnit;
-			//Задание характеристик объекту
-			UnitMass[cU]->Whose = 1;//Чьей рассы?
-			UnitMass[cU]->Pos.x = 2;//Начальная позиция на карте
+			//Р—Р°РґР°РЅРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РѕР±СЉРµРєС‚Сѓ
+			UnitMass[cU]->Whose = 1;//Р§СЊРµР№ СЂР°СЃСЃС‹?
+			UnitMass[cU]->Pos.x = 2;//РќР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ РЅР° РєР°СЂС‚Рµ
 			UnitMass[cU]->Pos.y = i;
-			UnitMass[cU]->Action.x = 2;//Начальное действие.
-			UnitMass[cU]->Action.y = i;//Совпадает с позицией - стоять.
+			UnitMass[cU]->Action.x = 2;//РќР°С‡Р°Р»СЊРЅРѕРµ РґРµР№СЃС‚РІРёРµ.
+			UnitMass[cU]->Action.y = i;//РЎРѕРІРїР°РґР°РµС‚ СЃ РїРѕР·РёС†РёРµР№ - СЃС‚РѕСЏС‚СЊ.
 			//UnitMass[cU]->BitMap = ;
-			UnitMass[cU]-> PathMass = NULL;//Сразу идти никуда не надо:)
+			UnitMass[cU]-> PathMass = NULL;//РЎСЂР°Р·Сѓ РёРґС‚Рё РЅРёРєСѓРґР° РЅРµ РЅР°РґРѕ:)
 		}*/
 		tFile::LogMessage("Begin to load BitMap\n");
-		//Загружаем изображение на плоскости:
-		nIWSurf = tDirectDraw::LoadImageFile("IW.bmp");//Загружаем окно интерфейса
+		//Р—Р°РіСЂСѓР¶Р°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ РЅР° РїР»РѕСЃРєРѕСЃС‚Рё:
+		nIWSurf = tDirectDraw::LoadImageFile("IW.bmp");//Р—Р°РіСЂСѓР¶Р°РµРј РѕРєРЅРѕ РёРЅС‚РµСЂС„РµР№СЃР°
 		tFile::LogMessage("IW BitMap Loaded\n");
-		nABGSurf = tDirectDraw::LoadImageFile("allgrnd.bmp");//Территории
+		nABGSurf = tDirectDraw::LoadImageFile("allgrnd.bmp");//РўРµСЂСЂРёС‚РѕСЂРёРё
 		tFile::LogMessage("AllGraund BitMap Loaded\n");
-		//int nASSurf = engine->LoadImageFile("allsol.bmp");//Изображения солдат
+		//int nASSurf = engine->LoadImageFile("allsol.bmp");//РР·РѕР±СЂР°Р¶РµРЅРёСЏ СЃРѕР»РґР°С‚
 		SetRect(&rect,0,0,640,480);
 		tDirectDraw::BlitImage(0,0,nIWSurf,&rect);
 	}
@@ -180,20 +180,20 @@ tInfantry::~tInfantry()
 
 void tInfantry::Process(tUnit* pUnit)
 {
-	// на всякий случай…
+	// РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№вЂ¦
 	if(bDie) return;
-	// Получим тип объекта, с которым взаимодействуем…
+	// РџРѕР»СѓС‡РёРј С‚РёРї РѕР±СЉРµРєС‚Р°, СЃ РєРѕС‚РѕСЂС‹Рј РІР·Р°РёРјРѕРґРµР№СЃС‚РІСѓРµРјвЂ¦
 	BYTE Type = pUnit->GetType();
-	// Если другой объект – взрыв, дальнейшая обработка не нужна
+	// Р•СЃР»Рё РґСЂСѓРіРѕР№ РѕР±СЉРµРєС‚ вЂ“ РІР·СЂС‹РІ, РґР°Р»СЊРЅРµР№С€Р°СЏ РѕР±СЂР°Р±РѕС‚РєР° РЅРµ РЅСѓР¶РЅР°
 	if(Type == UNITTYPE_INFANTRY) return;
-	// Если есть столкновение…
+	// Р•СЃР»Рё РµСЃС‚СЊ СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµвЂ¦
 	if(Collision(pUnit))
 	{
 		switch(pUnit->GetType())
 		{
-			// Взрывом задело объект типа “игрок”
+			// Р’Р·СЂС‹РІРѕРј Р·Р°РґРµР»Рѕ РѕР±СЉРµРєС‚ С‚РёРїР° вЂњРёРіСЂРѕРєвЂќ
 			case UNITTYPE_INFANTRY:
-				pUnit->Kill(); // Убиваем игрока
+				pUnit->Kill(); // РЈР±РёРІР°РµРј РёРіСЂРѕРєР°
 			break;
 			default:
 			break;
@@ -204,21 +204,21 @@ void tInfantry::Process(tUnit* pUnit)
 
 BOOL tInfantry::Move()
 {
-	// Уничтожить?
+	// РЈРЅРёС‡С‚РѕР¶РёС‚СЊ?
 	if(bDie) return FALSE;
 	if ((Pos.x!=Action.x)&&(Pos.y!=Action.y))
 
-	// Изменяем счетчик анимации
+	// РР·РјРµРЅСЏРµРј СЃС‡РµС‚С‡РёРє Р°РЅРёРјР°С†РёРё
 	if(Counter < 3) Counter++;
 	else
 	{
 		Counter = 0;
-		if(Frame < 8) // Изменяем текущий кадр
+		if(Frame < 8) // РР·РјРµРЅСЏРµРј С‚РµРєСѓС‰РёР№ РєР°РґСЂ
 			Frame++;
 		else
-			return FALSE; // Уничтожить
+			return FALSE; // РЈРЅРёС‡С‚РѕР¶РёС‚СЊ
 	}
-	return TRUE; // Не уничтожать
+	return TRUE; // РќРµ СѓРЅРёС‡С‚РѕР¶Р°С‚СЊ
 } // Move() 
 
 void tInfantry::Blit(void)

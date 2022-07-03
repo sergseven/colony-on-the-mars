@@ -52,25 +52,25 @@ void Update(void)
 	}
 	engine->LogMessage("run Part 1\n");
 	
-	// Часть 1 – обработка внутренних данных, и т.д.
-	iter = List.begin(); // Настраиваемся на первый элемент…
-	// Для всех элементов…
+	// Р§Р°СЃС‚СЊ 1 вЂ“ РѕР±СЂР°Р±РѕС‚РєР° РІРЅСѓС‚СЂРµРЅРЅРёС… РґР°РЅРЅС‹С…, Рё С‚.Рґ.
+	iter = List.begin(); // РќР°СЃС‚СЂР°РёРІР°РµРјСЃСЏ РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚вЂ¦
+	// Р”Р»СЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІвЂ¦
 	while(iter!= List.end())
 	{
 		pUnit=*iter;
-		if(!pUnit->Move()) // Объект просит себя уничтожить?
+		if(!pUnit->Move()) // РћР±СЉРµРєС‚ РїСЂРѕСЃРёС‚ СЃРµР±СЏ СѓРЅРёС‡С‚РѕР¶РёС‚СЊ?
 		{
-			delete pUnit; // Удаляем объект 
-			// Удаляем элемент списка и получаем следующий
+			delete pUnit; // РЈРґР°Р»СЏРµРј РѕР±СЉРµРєС‚ 
+			// РЈРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР° Рё РїРѕР»СѓС‡Р°РµРј СЃР»РµРґСѓСЋС‰РёР№
 			iter = List.erase(iter); 
 		}
 		else
-			iter++; // Следующий элемент
+			iter++; // РЎР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 	} // while
 
 		engine->LogMessage("run Part 2\n");
 
-	// Часть 2 - обработка взаимодействия
+	// Р§Р°СЃС‚СЊ 2 - РѕР±СЂР°Р±РѕС‚РєР° РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ
 	iter = List.begin();
 	while(iter != List.end())
 	{
@@ -80,9 +80,9 @@ void Update(void)
 		while(iter2 != List.end())
 		{
 			pUnit2 = *iter2;
-			// Проверяем…
+			// РџСЂРѕРІРµСЂСЏРµРјвЂ¦
 			if(pUnit && pUnit2 && pUnit != pUnit2)
-				pUnit->Process(pUnit2); // И обрабатываем
+				pUnit->Process(pUnit2); // Р РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј
 			iter2++;
 		} // while
 		iter++;
@@ -94,7 +94,7 @@ void Update(void)
 		pUnit->Blit();
 	} 
 	
-	engine->FlipSurfaces();//выполняет переключение поверхностей
+	engine->FlipSurfaces();//РІС‹РїРѕР»РЅСЏРµС‚ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№
 	engine->SetEngineThread(Null);
 }
 
@@ -103,8 +103,8 @@ void InitGameDemo()
 	engine->LogMessage("run InitGameDemo Thread\n");
 	for (i=1;i<=10;i++)
 	{
-		engine->LogMessage("Добавляем солдата в позиции 2 \n");
-		// Добавляем солдата в позиции (2,i)
+		engine->LogMessage("Р”РѕР±Р°РІР»СЏРµРј СЃРѕР»РґР°С‚Р° РІ РїРѕР·РёС†РёРё 2 \n");
+		// Р”РѕР±Р°РІР»СЏРµРј СЃРѕР»РґР°С‚Р° РІ РїРѕР·РёС†РёРё (2,i)
 		tInfantry* pInfantry = new tInfantry(2,i);
 		List.push_front(pInfantry); 
 	}
@@ -128,9 +128,9 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
     {
         error.AddErrorHistory(" <-WinMain <-Game.exe");
         const char* errorMessage = error.GetErrorMessage();
-        // Выводим сообщение об ошибке в log-файл
+        // Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РІ log-С„Р°Р№Р»
         engine->LogMessage("\n%s\n",errorMessage);
-        // Выводим сообщение об ошибке на экран
+        // Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РЅР° СЌРєСЂР°РЅ
         MessageBox(NULL,errorMessage,"Critical error!",MB_OK|MB_ICONERROR);
         delete engine;
         return 1;

@@ -4,17 +4,17 @@
 #include "..\tError\tError.h"
 
 enum {
-    TFILENEW = 0x00000001, // Создать новый файл
-    TFILEREAD = 0x00000002, // Открыть для чтения
-    TFILEWRITE = 0x00000004, // Открыть для записи
-    TFILETEXT = 0x00000008, // Открыть как текст
-    TFILEBINARY = 0x00000010 // Открыть как двоичный файл
+    TFILENEW = 0x00000001, // РЎРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ С„Р°Р№Р»
+    TFILEREAD = 0x00000002, // РћС‚РєСЂС‹С‚СЊ РґР»СЏ С‡С‚РµРЅРёСЏ
+    TFILEWRITE = 0x00000004, // РћС‚РєСЂС‹С‚СЊ РґР»СЏ Р·Р°РїРёСЃРё
+    TFILETEXT = 0x00000008, // РћС‚РєСЂС‹С‚СЊ РєР°Рє С‚РµРєСЃС‚
+    TFILEBINARY = 0x00000010 // РћС‚РєСЂС‹С‚СЊ РєР°Рє РґРІРѕРёС‡РЅС‹Р№ С„Р°Р№Р»
 };
 
 /*--------------------------------------------------------------
  tFile
 
- Класс файла
+ РљР»Р°СЃСЃ С„Р°Р№Р»Р°
 --------------------------------------------------------------*/
 
 
@@ -28,9 +28,9 @@ public:
 virtual    void LogMessage(const char* message ...);
     void CloseLogFile(void);
 protected:
-    FILE* m_file; // Указатель на файл
-    string m_fileName; // Имя файла
-    int m_fileFlags; // Флаги открытия файла
+    FILE* m_file; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° С„Р°Р№Р»
+    string m_fileName; // РРјСЏ С„Р°Р№Р»Р°
+    int m_fileFlags; // Р¤Р»Р°РіРё РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
     void OpenFile(const char* name,int flags = TFILEREAD|TFILETEXT);
     void CloseFile(void);
 

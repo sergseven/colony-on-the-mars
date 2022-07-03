@@ -12,20 +12,20 @@ tWindow::~tWindow()
 
 void tWindow::CreateWnd(/*HINSTANCE hCurrentInst,int nCmdShow*/)
 {
-	WNDCLASS wndClass;//Используется для регистрации класса окна
-	wndClass.style=CS_HREDRAW|CS_VREDRAW;//определяет свойства окна
-	wndClass.lpfnWndProc=WndProc;//определяет адрес функции окна
-	wndClass.cbClsExtra=0;//число байт, которое необходимо запросить у Windows. Обычно равна 0
-	wndClass.cbWndExtra=0;//число байт, которое необходимо запросить у Windows. Обычно равна 0
-	wndClass.hInstance =hCurrentInst;//сообщает Windows о том, кто создает определение класса
-	wndClass.hIcon =LoadIcon(hCurrentInst,"");//загружает иконку, в данном случае ее нет
-	wndClass.hCursor =LoadCursor(NULL,IDC_ARROW);//стандартный курсор
-	wndClass.hbrBackground=(HBRUSH)GetStockObject(WHITE_BRUSH);//фон приложения
-	wndClass.lpszMenuName=NULL;//определяет меню. В данной ситуации меню отсутствует
-	wndClass.lpszClassName="Game";//указатель на строку, содержащую имя класса
-	RegisterClass(&wndClass);//регистрация окна
+	WNDCLASS wndClass;//РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё РєР»Р°СЃСЃР° РѕРєРЅР°
+	wndClass.style=CS_HREDRAW|CS_VREDRAW;//РѕРїСЂРµРґРµР»СЏРµС‚ СЃРІРѕР№СЃС‚РІР° РѕРєРЅР°
+	wndClass.lpfnWndProc=WndProc;//РѕРїСЂРµРґРµР»СЏРµС‚ Р°РґСЂРµСЃ С„СѓРЅРєС†РёРё РѕРєРЅР°
+	wndClass.cbClsExtra=0;//С‡РёСЃР»Рѕ Р±Р°Р№С‚, РєРѕС‚РѕСЂРѕРµ РЅРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїСЂРѕСЃРёС‚СЊ Сѓ Windows. РћР±С‹С‡РЅРѕ СЂР°РІРЅР° 0
+	wndClass.cbWndExtra=0;//С‡РёСЃР»Рѕ Р±Р°Р№С‚, РєРѕС‚РѕСЂРѕРµ РЅРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїСЂРѕСЃРёС‚СЊ Сѓ Windows. РћР±С‹С‡РЅРѕ СЂР°РІРЅР° 0
+	wndClass.hInstance =hCurrentInst;//СЃРѕРѕР±С‰Р°РµС‚ Windows Рѕ С‚РѕРј, РєС‚Рѕ СЃРѕР·РґР°РµС‚ РѕРїСЂРµРґРµР»РµРЅРёРµ РєР»Р°СЃСЃР°
+	wndClass.hIcon =LoadIcon(hCurrentInst,"");//Р·Р°РіСЂСѓР¶Р°РµС‚ РёРєРѕРЅРєСѓ, РІ РґР°РЅРЅРѕРј СЃР»СѓС‡Р°Рµ РµРµ РЅРµС‚
+	wndClass.hCursor =LoadCursor(NULL,IDC_ARROW);//СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РєСѓСЂСЃРѕСЂ
+	wndClass.hbrBackground=(HBRUSH)GetStockObject(WHITE_BRUSH);//С„РѕРЅ РїСЂРёР»РѕР¶РµРЅРёСЏ
+	wndClass.lpszMenuName=NULL;//РѕРїСЂРµРґРµР»СЏРµС‚ РјРµРЅСЋ. Р’ РґР°РЅРЅРѕР№ СЃРёС‚СѓР°С†РёРё РјРµРЅСЋ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚
+	wndClass.lpszClassName="Game";//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ, СЃРѕРґРµСЂР¶Р°С‰СѓСЋ РёРјСЏ РєР»Р°СЃСЃР°
+	RegisterClass(&wndClass);//СЂРµРіРёСЃС‚СЂР°С†РёСЏ РѕРєРЅР°
 	hInstance=hCurrentInst;
-	hWnd= CreateWindow( //создание окна
+	hWnd= CreateWindow( //СЃРѕР·РґР°РЅРёРµ РѕРєРЅР°
 		"Game",
 		"Game",
 		WS_POPUP,
@@ -43,7 +43,7 @@ UINT message,WPARAM wParam,LPARAM lParam)
 {
 	switch(message)
 	{
-	case WM_DESTROY://Вызывается при разрушении окна
+	case WM_DESTROY://Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё СЂР°Р·СЂСѓС€РµРЅРёРё РѕРєРЅР°
 		PostQuitMessage(0);
 		return 0;
 	}
